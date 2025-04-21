@@ -1,6 +1,7 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { Message } from "@shared/schema";
 import { useUser } from "../hooks/useUser.tsx";
+import { useToast } from "@/hooks/use-toast";
 
 interface ChatContainerProps {
   messages: Message[];
@@ -8,6 +9,7 @@ interface ChatContainerProps {
 }
 
 export default function ChatContainer({ messages, loading }: ChatContainerProps) {
+  const { toast } = useToast();
   const { user } = useUser();
   const chatContainerRef = useRef<HTMLDivElement>(null);
   
@@ -36,6 +38,81 @@ export default function ChatContainer({ messages, loading }: ChatContainerProps)
       minute: '2-digit',
       second: '2-digit',
       hour12: false
+    });
+  };
+  
+  // Copy code to clipboard
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text).then(
+      () => {
+        toast({
+          title: "Code Copied",
+          description: "Code has been copied to clipboard",
+        });
+      },
+      (err) => {
+        console.error("Could not copy text: ", err);
+        toast({
+          variant: "destructive",
+          title: "Copy Failed",
+          description: "Failed to copy code to clipboard",
+        });
+      }
+    );
+  };
+
+  // Process message content to detect code blocks
+  const processMessageContent = (content: string) => {
+    // Split by code blocks (marked by triple backticks)
+    const parts = content.split(/(```[\s\S]*?```)/g);
+    
+    return parts.map((part, index) => {
+      // Check if this part is a code block
+      if (part.startsWith('```') && part.endsWith('```')) {
+        // Extract the code and language (if specified)
+        let code = part.slice(3, -3);
+        let language = '';
+        
+        // Check if language is specified in the first line
+        const firstLineBreak = code.indexOf('\n');
+        if (firstLineBreak > 0) {
+          language = code.slice(0, firstLineBreak).trim();
+          // Only remove first line if it appears to be a language specifier
+          if (language && !language.includes(' ')) {
+            code = code.slice(firstLineBreak + 1);
+          } else {
+            language = '';
+          }
+        }
+        
+        return (
+          <div key={index} className="my-3 relative">
+            <div className="bg-gray-800 rounded-md overflow-hidden">
+              <div className="flex justify-between items-center px-4 py-2 bg-gray-900 border-b border-gray-700">
+                <span className="text-xs text-gray-300">{language || 'code'}</span>
+                <button 
+                  onClick={() => copyToClipboard(code)}
+                  className="text-xs text-cyber-primary hover:text-white bg-gray-800 hover:bg-gray-700 py-1 px-2 rounded transition-colors duration-150"
+                >
+                  <div className="flex items-center gap-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    Copy
+                  </div>
+                </button>
+              </div>
+              <pre className="p-4 overflow-x-auto text-sm text-gray-300">
+                <code>{code}</code>
+              </pre>
+            </div>
+          </div>
+        );
+      } else {
+        // Regular text
+        return <p key={index} className="text-cyber-text whitespace-pre-line">{part}</p>;
+      }
     });
   };
 
@@ -112,9 +189,10 @@ export default function ChatContainer({ messages, loading }: ChatContainerProps)
                   </span>
                 </div>
                 <div className="mt-1">
-                  <p className="text-cyber-text whitespace-pre-line">
-                    {message.content}
-                  </p>
+                  {message.role === 'assistant' 
+                    ? processMessageContent(message.content)
+                    : <p className="text-cyber-text whitespace-pre-line">{message.content}</p>
+                  }
                 </div>
               </div>
             </div>

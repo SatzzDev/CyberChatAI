@@ -17,10 +17,14 @@ export function useChat() {
   const { data: serverMessages = [] } = useQuery<Message[]>({
     queryKey: ["/api/messages"],
     enabled: !!user,
-    onSuccess: (data) => {
-      setLocalMessages(data);
-    }
   });
+  
+  // Update local messages when server messages change
+  useEffect(() => {
+    if (serverMessages) {
+      setLocalMessages(serverMessages);
+    }
+  }, [serverMessages]);
 
   // Combine server messages with local pending messages
   const messages = localMessages;
