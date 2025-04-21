@@ -72,6 +72,21 @@ export default function Home() {
       
       <ChatInput onSubmit={handleSendMessage} loading={loading} />
       
+      <footer className="bg-cyber-surface border-t border-cyber-primary/30 py-3 px-6 text-center text-cyber-dark-text text-xs relative z-10">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
+          <div className="flex items-center mb-2 md:mb-0">
+            <img src="/cyon-chibi.svg" alt="CYON Chibi" className="w-6 h-6 mr-2" />
+            <span>© 2025 CYON AI - Advanced Neural Interface</span>
+          </div>
+          <div className="flex gap-4">
+            <a href="#" className="text-cyber-primary hover:text-cyber-secondary transition-colors">About</a>
+            <a href="#" className="text-cyber-primary hover:text-cyber-secondary transition-colors">Privacy</a>
+            <a href="#" className="text-cyber-primary hover:text-cyber-secondary transition-colors">Terms</a>
+            <a href="#" className="text-cyber-primary hover:text-cyber-secondary transition-colors">Support</a>
+          </div>
+        </div>
+      </footer>
+      
       <ErrorNotification 
         message={errorMessage} 
         visible={error} 
