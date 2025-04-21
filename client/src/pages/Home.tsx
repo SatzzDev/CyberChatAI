@@ -24,7 +24,7 @@ export default function Home() {
     setUser(username);
     toast({
       title: "Connection Established",
-      description: `Welcome, ${username}! You are now connected to NEXUSAI.`,
+      description: `Welcome, ${username}! You are now connected to CYON AI.`,
     });
   };
 
@@ -54,13 +54,13 @@ export default function Home() {
             <div className="relative">
               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-cyber-primary to-cyber-secondary/50 flex items-center justify-center overflow-hidden">
                 <div className="w-9 h-9 rounded-full bg-cyber-background flex items-center justify-center text-xl font-bold text-cyber-primary">
-                  N
+                  C
                 </div>
               </div>
               <div className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-green-500 border-2 border-cyber-surface"></div>
             </div>
             <h1 className="text-xl md:text-2xl font-bold">
-              <span className="text-cyber-primary">NEXUS</span><span className="text-cyber-secondary">AI</span>
+              <span className="text-cyber-primary">CYON</span><span className="text-cyber-secondary">AI</span>
             </h1>
           </div>
           

@@ -142,7 +142,7 @@ export default function ChatContainer({ messages, loading }: ChatContainerProps)
               </div>
               <div className="mt-1">
                 <p className="text-cyber-text">
-                  Welcome to NEXUS<span className="text-cyber-secondary">AI</span>, your personal AI assistant. I'm here to help you with information, tasks, and conversation. What would you like to discuss today?
+                  Welcome to CYON<span className="text-cyber-secondary">AI</span>, your personal AI assistant. I'm here to help you with information, tasks, and conversation. What would you like to discuss today?
                 </p>
               </div>
             </div>
@@ -179,7 +179,7 @@ export default function ChatContainer({ messages, loading }: ChatContainerProps)
                     <p className={`${message.role === 'user' ? 'text-cyber-text' : 'text-cyber-secondary'} text-sm font-bold`}>
                       {message.role === 'user' 
                         ? message.username 
-                        : <span>NEXUS<span className="text-cyber-primary">AI</span></span>}
+                        : <span>CYON<span className="text-cyber-primary">AI</span></span>}
                     </p>
                   </div>
                   <span className="text-cyber-dark-text text-xs font-mono">
@@ -214,7 +214,7 @@ export default function ChatContainer({ messages, loading }: ChatContainerProps)
               <div className="flex-1">
                 <div className="flex justify-between items-start">
                   <div>
-                    <p className="text-cyber-secondary text-sm font-bold">NEXUS<span className="text-cyber-primary">AI</span></p>
+                    <p className="text-cyber-secondary text-sm font-bold">CYON<span className="text-cyber-primary">AI</span></p>
                   </div>
                   <span className="text-cyber-dark-text text-xs font-mono">
                     <time dateTime={new Date().toISOString()}>{formatTime(new Date())}</time>
