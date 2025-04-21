@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Body -->
+  <ellipse cx="100" cy="120" rx="45" ry="50" fill="#0C1021" stroke="#00E5FF" stroke-width="2"/>
+  
+  <!-- Head -->
+  <circle cx="100" cy="70" r="40" fill="#0C1021" stroke="#00E5FF" stroke-width="2"/>
+  
+  <!-- Eyes -->
+  <ellipse cx="80" cy="65" rx="5" ry="7" fill="#00E5FF" />
+  <ellipse cx="120" cy="65" rx="5" ry="7" fill="#00E5FF" />
+  
+  <!-- Mouth -->
+  <path d="M85 85 C95 95, 105 95, 115 85" stroke="#00E5FF" stroke-width="2" fill="none" />
+  
+  <!-- Antennas -->
+  <path d="M75 40 C60 20, 55 10, 70 5" stroke="#00E5FF" stroke-width="2" fill="none" />
+  <path d="M125 40 C140 20, 145 10, 130 5" stroke="#00E5FF" stroke-width="2" fill="none" />
+  
+  <!-- Arms -->
+  <path d="M60 110 C40 120, 30 130, 20 120" stroke="#00E5FF" stroke-width="2" fill="none" />
+  <path d="M140 110 C160 120, 170 130, 180 120" stroke="#00E5FF" stroke-width="2" fill="none" />
+  
+  <!-- Legs -->
+  <path d="M80 170 C75 180, 70 190, 65 180" stroke="#00E5FF" stroke-width="2" fill="none" />
+  <path d="M120 170 C125 180, 130 190, 135 180" stroke="#00E5FF" stroke-width="2" fill="none" />
+  
+  <!-- Digital Pattern -->
+  <path d="M100 115 L105 125 L95 135" stroke="#00E5FF" stroke-width="1" fill="none" />
+  <path d="M100 115 L95 125 L105 135" stroke="#00E5FF" stroke-width="1" fill="none" />
+</svg>

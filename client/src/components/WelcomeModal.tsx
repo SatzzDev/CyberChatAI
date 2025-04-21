@@ -29,7 +29,10 @@ export default function WelcomeModal({ isOpen, onSubmitUsername }: WelcomeModalP
         </div>
         
         <div className="text-center relative z-10">
-          <h2 className="text-3xl font-bold mb-2 text-cyber-primary tracking-wider">NEXUS<span className="text-cyber-secondary">AI</span></h2>
+          <div className="flex justify-center mb-4">
+            <img src="/cyon-chibi.svg" alt="CYON Chibi" className="w-24 h-24" />
+          </div>
+          <h2 className="text-3xl font-bold mb-2 text-cyber-primary tracking-wider">CYON<span className="text-cyber-secondary">AI</span></h2>
           <div className="h-px w-3/4 mx-auto bg-gradient-to-r from-transparent via-cyber-primary to-transparent mb-6"></div>
           
           <p className="mb-6 text-cyber-text">Enter your identifier to establish connection</p>
