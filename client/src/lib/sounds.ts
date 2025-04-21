@@ -12,7 +12,7 @@ export function playSound(type: 'send' | 'receive'): void {
     }
     
     // Play the sound
-    sound.play();
+    sound.play().catch(_ => {});
   } catch (error) {
     console.error("Error playing sound:", error);
   }

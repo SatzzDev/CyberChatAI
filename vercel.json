@@ -1,0 +1,50 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "server/index.ts",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "client/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "^/assets/(.*)",
+      "dest": "/client/dist/assets/$1"
+    },
+    {
+      "src": "^/favicon\\.svg",
+      "dest": "/client/public/favicon.svg"
+    },
+    {
+      "src": "^/cyon-chibi\\.svg",
+      "dest": "/client/public/cyon-chibi.svg"
+    },
+    {
+      "src": "^/sent\\.wav",
+      "dest": "/client/public/sent.wav"
+    },
+    {
+      "src": "^/new\\.wav",
+      "dest": "/client/public/new.wav"
+    },
+    {
+      "src": "^/api/(.*)",
+      "dest": "/server/index.ts"
+    },
+    {
+      "src": "^/(.*)",
+      "dest": "/client/dist/index.html"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production",
+    "OPENAI_API_KEY": "@openai_api_key"
+  }
+}
