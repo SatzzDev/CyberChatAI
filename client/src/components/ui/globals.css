@@ -1,0 +1,91 @@
+/* This file contains global utility classes for the cyber theme */
+
+@layer components {
+  /* Gradients */
+  .bg-gradient-cyber {
+    background: linear-gradient(90deg, var(--cyber-primary), var(--cyber-secondary));
+  }
+
+  .bg-gradient-cyber-subtle {
+    background: linear-gradient(90deg, rgba(0, 229, 255, 0.1), rgba(176, 38, 255, 0.1));
+  }
+
+  /* Button styles */
+  .cyber-btn {
+    @apply bg-cyber-background border-2 border-cyber-primary text-cyber-primary hover:text-cyber-text
+      px-4 py-2 rounded-sm uppercase tracking-widest font-bold transition-all duration-300
+      hover:bg-cyber-primary/20 relative overflow-hidden;
+  }
+
+  .cyber-btn::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    z-index: -1;
+    background: linear-gradient(90deg, var(--cyber-primary), var(--cyber-secondary), var(--cyber-primary));
+    background-size: 200% 100%;
+    animation: borderAnimation 3s ease infinite;
+  }
+
+  /* Text effects */
+  .cyber-text-glow {
+    text-shadow: 0 0 8px var(--cyber-primary);
+  }
+
+  .cyber-text-glow-secondary {
+    text-shadow: 0 0 8px var(--cyber-secondary);
+  }
+
+  /* Borders */
+  .cyber-border {
+    @apply border-2 border-cyber-primary/50;
+  }
+
+  .cyber-border-glow {
+    @apply border-2 border-cyber-primary animate-pulse-glow;
+  }
+
+  /* Layouts */
+  .cyber-container {
+    @apply bg-cyber-surface border border-cyber-primary/30 rounded-sm p-4;
+  }
+
+  .cyber-card {
+    @apply bg-cyber-surface border border-cyber-primary/30 rounded-sm p-4 relative overflow-hidden;
+  }
+
+  .cyber-card::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    right: -50%;
+    bottom: -50%;
+    background: linear-gradient(45deg, transparent, var(--cyber-primary), transparent);
+    opacity: 0.05;
+    transform: rotate(45deg);
+    z-index: 0;
+  }
+
+  /* Dividers */
+  .cyber-divider {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-cyber-primary to-transparent my-4;
+  }
+
+  /* Avatar containers */
+  .cyber-avatar-container {
+    @apply relative rounded-full overflow-hidden;
+  }
+
+  .cyber-avatar {
+    @apply w-10 h-10 rounded-full bg-gradient-to-br from-cyber-primary/20 to-cyber-secondary/20 
+      flex items-center justify-center text-sm font-bold text-cyber-text uppercase;
+  }
+
+  .cyber-avatar-status {
+    @apply absolute bottom-0 right-0 w-2 h-2 rounded-full bg-green-500 border border-cyber-surface;
+  }
+}

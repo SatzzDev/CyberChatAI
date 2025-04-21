@@ -1,0 +1,226 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;500;700&family=Space+Mono&display=swap');
+
+@layer base {
+  :root {
+    --background: 222 14% 8%;
+    --foreground: 210 40% 98%;
+    
+    --card: 224 15% 11%;
+    --card-foreground: 210 40% 98%;
+    
+    --popover: 224 71% 4%;
+    --popover-foreground: 210 40% 98%;
+    
+    --primary: 183 100% 50%;
+    --primary-foreground: 222 47% 11%;
+    
+    --secondary: 283 100% 50%;
+    --secondary-foreground: 210 40% 98%;
+    
+    --muted: 223 47% 11%;
+    --muted-foreground: 215 20% 65%;
+    
+    --accent: 283 100% 50%;
+    --accent-foreground: 210 40% 98%;
+    
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 210 40% 98%;
+    
+    --border: 215 27% 20%;
+    --input: 215 27% 20%;
+    --ring: 183 100% 50%;
+    
+    --chart-1: 183 100% 50%;
+    --chart-2: 283 100% 50%;
+    --chart-3: 349 100% 50%;
+    --chart-4: 59 100% 50%;
+    --chart-5: 212 100% 50%;
+    
+    --sidebar-background: 222 14% 8%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 183 100% 50%;
+    --sidebar-primary-foreground: 222 47% 11%;
+    --sidebar-accent: 283 100% 50%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 215 27% 20%;
+    --sidebar-ring: 183 100% 50%;
+    
+    --radius: 0.125rem;
+
+    /* Cyber theme custom colors */
+    --cyber-background: #0F1116;
+    --cyber-surface: #161A22;
+    --cyber-primary: #00E5FF;
+    --cyber-secondary: #B026FF;
+    --cyber-text: #E5E5EC;
+    --cyber-user-msg: #1E2430;
+    --cyber-ai-msg: #251D34;
+    --cyber-dark-text: #9CA3AF;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-cyber-background text-cyber-text;
+    font-family: 'Rajdhani', sans-serif;
+    background-image: 
+      radial-gradient(circle at 20% 20%, rgba(0, 229, 255, 0.05) 0%, transparent 30%),
+      radial-gradient(circle at 80% 80%, rgba(176, 38, 255, 0.05) 0%, transparent 30%);
+  }
+
+  /* Circuit board pattern for backgrounds */
+  .circuit-bg {
+    background-image: 
+      linear-gradient(rgba(0, 229, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 229, 255, 0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  /* Custom glow effects */
+  .cyber-button {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .cyber-button::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    z-index: -1;
+    background: linear-gradient(90deg, #00E5FF, #B026FF, #00E5FF);
+    background-size: 200% 100%;
+    animation: borderAnimation 3s ease infinite;
+  }
+  
+  @keyframes borderAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  /* Custom scanner animation */
+  .scanner {
+    height: 2px;
+    width: 100%;
+    background: linear-gradient(90deg, transparent, #00E5FF, transparent);
+    position: absolute;
+    animation: scan 2s ease-in-out infinite;
+  }
+  
+  @keyframes scan {
+    0% { top: 0; }
+    50% { top: 100%; }
+    100% { top: 0; }
+  }
+  
+  /* Hide scrollbar but allow scrolling */
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Animations */
+  @keyframes pulse-glow {
+    0%, 100% { 
+      box-shadow: 0 0 8px 2px rgba(0, 229, 255, 0.4);
+      border-color: rgba(0, 229, 255, 0.8);
+    }
+    50% { 
+      box-shadow: 0 0 15px 5px rgba(0, 229, 255, 0.7);
+      border-color: rgba(0, 229, 255, 1);
+    }
+  }
+
+  @keyframes scanning {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(10px); }
+    100% { transform: translateY(0); }
+  }
+
+  @keyframes typing {
+    0% { opacity: 0.2; }
+    50% { opacity: 1; }
+    100% { opacity: 0.2; }
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s infinite;
+  }
+
+  .animate-scanning {
+    animation: scanning 2s ease-in-out infinite;
+  }
+
+  .animate-typing {
+    animation: typing 1.5s infinite;
+  }
+
+  .delay-0 {
+    animation-delay: 0ms;
+  }
+
+  .delay-150 {
+    animation-delay: 150ms;
+  }
+
+  .delay-300 {
+    animation-delay: 300ms;
+  }
+}
+
+/* Theme color definitions for components */
+@layer components {
+  .bg-cyber-background {
+    background-color: var(--cyber-background);
+  }
+  
+  .bg-cyber-surface {
+    background-color: var(--cyber-surface);
+  }
+  
+  .text-cyber-primary {
+    color: var(--cyber-primary);
+  }
+  
+  .text-cyber-secondary {
+    color: var(--cyber-secondary);
+  }
+  
+  .text-cyber-text {
+    color: var(--cyber-text);
+  }
+  
+  .text-cyber-dark-text {
+    color: var(--cyber-dark-text);
+  }
+  
+  .bg-cyber-user-msg {
+    background-color: var(--cyber-user-msg);
+  }
+  
+  .bg-cyber-ai-msg {
+    background-color: var(--cyber-ai-msg);
+  }
+  
+  .border-cyber-primary {
+    border-color: var(--cyber-primary);
+  }
+  
+  .border-cyber-secondary {
+    border-color: var(--cyber-secondary);
+  }
+}
