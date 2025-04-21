@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { sendMessage, fetchMessages } from "@/lib/openai";
 import type { Message } from "@shared/schema";
-import { useUser } from "./useUser";
+import { useUser } from "./useUser.tsx"; // Use the correct import path
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export function useChat() {
@@ -11,12 +11,19 @@ export function useChat() {
   const queryClient = useQueryClient();
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("API connection failed. Retrying...");
+  const [localMessages, setLocalMessages] = useState<Message[]>([]);
 
   // Fetch all messages
-  const { data: messages = [] } = useQuery<Message[]>({
+  const { data: serverMessages = [] } = useQuery<Message[]>({
     queryKey: ["/api/messages"],
     enabled: !!user,
+    onSuccess: (data) => {
+      setLocalMessages(data);
+    }
   });
+
+  // Combine server messages with local pending messages
+  const messages = localMessages;
 
   // Send message mutation
   const { mutate, isPending: loading } = useMutation({
@@ -40,6 +47,19 @@ export function useChat() {
   });
 
   const handleSendMessage = (content: string, username: string) => {
+    // Add the message locally immediately
+    const tempUserMessage: Message = {
+      id: Date.now(), // Temporary ID
+      content,
+      role: "user",
+      username,
+      timestamp: new Date(),
+    };
+    
+    // Update local state to include the new message
+    setLocalMessages(prev => [...prev, tempUserMessage]);
+    
+    // Send to server
     mutate({ content, username });
   };
 

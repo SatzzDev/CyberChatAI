@@ -6,6 +6,7 @@ import OpenAI from "openai";
 
 // Initialize OpenAI client
 const openai = new OpenAI({
+  baseURL: 'https://beta.sree.shop/v1',
   apiKey: process.env.OPENAI_API_KEY || "",
 });
 
@@ -40,7 +41,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Call OpenAI API
       // the newest OpenAI model is "gpt-4o" which was released May 13, 2024
       const completion = await openai.chat.completions.create({
-        model: "gpt-4o",
+        model: 'Provider-5/deepseek-r1-distill-qwen-32b',
         messages: [
           {
             role: "system",
