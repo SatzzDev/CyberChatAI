@@ -24,18 +24,18 @@ export function useChat() {
   // Update local messages when server messages change
   useEffect(() => {
     if (serverMessages) {
-      setLocalMessages(serverMessages);
-      
       // Play sound if we received a new AI message
       if (serverMessages.length > lastMessageCount && serverMessages.length > 0) {
         const lastMessage = serverMessages[serverMessages.length - 1];
         if (lastMessage.role === 'assistant') {
           playSound('receive');
         }
-        setLastMessageCount(serverMessages.length);
       }
+      
+      setLocalMessages(serverMessages);
+      setLastMessageCount(serverMessages.length);
     }
-  }, [serverMessages, lastMessageCount]);
+  }, [serverMessages]); // removed lastMessageCount to prevent infinite loop
 
   // Combine server messages with local pending messages
   const messages = localMessages;
