@@ -1,4 +1,4 @@
-# CYON AI Chat Application
+# CYON AI 
 
 CYON AI adalah aplikasi chat dengan tema cyber yang menggunakan OpenAI API. Aplikasi ini memiliki fitur tampilan code block yang bagus dengan tombol copy, efek suara notifikasi, dan antarmuka yang menarik dengan desain cyberpunk.
 
