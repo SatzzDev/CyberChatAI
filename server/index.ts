@@ -53,10 +53,7 @@ app.use((req, res, next) => {
   if (app.get("env") === "development") {
     await setupVite(app, server);
   } else {
-    app.use(express.static(path.resolve("dist/public")));
-    app.get("*", (_req, res) => {
-      res.sendFile(path.resolve("dist/public/index.html"));
-    });
+    serveStatic(app);
   }
 
   // ALWAYS serve the app on port 5000
