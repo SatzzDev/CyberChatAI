@@ -1,3 +1,4 @@
+
 {
   "version": 2,
   "buildCommand": "npm run build",
@@ -6,14 +7,14 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "/api"
+      "destination": "/api/index.js"
     },
     {
       "source": "/(.*)",
       "destination": "/"
     }
   ],
-    "env": {
+  "env": {
     "NODE_ENV": "production",
     "OPENAI_API_KEY": "ddc-beta-klx9fk6vdk-u8OAE2Q5RDfNf5VYih6r2r0102Pe7icG3jE"
   }
